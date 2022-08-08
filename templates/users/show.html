@@ -13,6 +13,8 @@
 
     <div class="col-sm-10 col-12">
         <form>
+
+    <!-- edit and delete buttons -->
           <button class="btn btn-primary btn-sm"
                   formaction="/users/{{ user.id }}/edit"
                   formmethod="GET">Edit
@@ -22,7 +24,22 @@
                   formmethod="POST">Delete
           </button>
         </form>
-    
+
+    <!-- Listing Posts and Post-button -->
+        <h4 class="mt-4">Posts</h4>
+        <ul>
+            {% for post in user.posts %}
+            <li>
+            <a href="/posts/{{ post.id }}"><b>{{ post.title }}</b></a>
+            <small> - {{ post.friendly_date}}</small>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <div>
+            <a href="/users/{{ user.id }}/posts/new"
+            class="btn btn-primary">Add Post</a> 
+        </div>
     </div>
     
 
