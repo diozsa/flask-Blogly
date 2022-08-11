@@ -7,16 +7,29 @@
 <font size="2">
     by {{ post.user.full_name }} on {{ post.friendly_date }}
 </font>
+{% if post.tags %}
+<p>
+  <b>Tags:</b>
+  {% for tag in post.tags %}
+  <a href="/tags/{{ tag.id }}">{{ tag.name }}</a>
+  {% endfor %}
+</p>
+{% endif %}
 
 <form class="mt-4">
     <button class="btn btn-outline-info"            
             formaction="/users/{{ post.user_id }}"
-            formmethod="GET">Cancel</button>
+            formmethod="GET">
+            Cancel</button>
+
     <button class="btn btn-primary"            
             formaction="/posts/{{ post.id }}/edit"
-            formmethod="GET">Edit</button>
+            formmethod="GET">
+            Edit (not like Twitter)</button>
+
     <button class="btn btn-danger"
             formaction="/posts/{{ post.id }}/delete"
-            formmethod="POST">Delete</button>
+            formmethod="POST">
+            Delete</button>
   </form>
 {% endblock %}

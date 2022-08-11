@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Show Tag{% endblock %}
+{% block content %}
+
+<h2>{{ tag.name }}</h2>
+<ul>
+    <h3>Here are posts with this tag:</h3>
+    {% for post in tag.posts %}
+    <li><a href="/posts/{{ post.id }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+<form class="mt-4">
+    <button class="btn btn-outline-info"            
+            formaction="/tags"
+            formmethod="GET">Cancel</button>
+    <button class="btn btn-primary"            
+            formaction="/tags/{{ tag.id }}/edit"
+            formmethod="GET">Edit Tag</button>
+    <button class="btn btn-danger"
+            formaction="/tags/{{ tag.id }}/delete"
+            formmethod="POST">Delete Tag</button>
+  </form>
+{% endblock %}
